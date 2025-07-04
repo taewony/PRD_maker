@@ -75,3 +75,4 @@
 9. 사용하고 싶은 기술 스택은?
 → Next.js, Tailwind CSS, LLM API, localStorage, 다운로드 기능
 
+---

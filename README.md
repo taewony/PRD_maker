@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PRD Maker
 
-## Getting Started
+사용자가 몇 가지 질문에 답하는 것만으로 아이디어를 구체적인 PRD(제품 요구사항 문서), 실행 계획, 그리고 LLM 프롬프트로 자동 변환해주는 웹 애플리케이션입니다.
 
-First, run the development server:
+## ✨ 핵심 가치
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **아이디어에서 실행까지의 거리 단축**: 복잡한 문서 작업 없이 아이디어를 빠르게 개발 가능한 형태로 구체화합니다.
+- **AI 협업 최적화**: AI 기반 개발 도구(CLI 등)와 바로 연동할 수 있는 체계적인 프로젝트 계획을 생성합니다.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 주요 해결 문제
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 초기 아이디어를 개발 문서로 정리하는 데 따르는 시간 소모와 막막함을 해결합니다.
+- AI와 효율적으로 협업하기 위한 표준화된 프로젝트 구조와 실행 계획의 부재 문제를 해결합니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 👥 주요 사용자
 
-## Learn More
+- 사이드 프로젝트를 시작하려는 개발자, 학생, 기획자
+- 빠르게 프로토타입을 제작하고 싶은 1인 창업가
+- 아이디어를 체계적으로 정리하고 싶은 모든 창작자
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 시작하기
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  웹 페이지에 접속하여 9가지 질문에 답변을 입력합니다.
+2.  '결과 생성' 버튼을 클릭합니다.
+3.  생성된 README, CONTEXT, Prompt를 확인하고 복사하거나 파일로 저장하여 개발에 바로 활용합니다.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ 기술 스택
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Frontend**: Next.js, Tailwind CSS
+- **LLM 연동**: OpenAI API (예정)
+- **기타**: localStorage를 활용한 데이터 관리, FileSaver.js를 이용한 다운로드 기능

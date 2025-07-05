@@ -113,8 +113,6 @@ export default function Home() {
     setAnswers(newAnswers);
   };
 
-  const isAllAnswered = answers.every(answer => answer.trim() !== '');
-
   const handleGeneratePrompt = () => {
     const isUserInputEmpty = answers.every(answer => answer.trim() === '');
     const sourceAnswers = isUserInputEmpty ? exampleAnswers : answers;

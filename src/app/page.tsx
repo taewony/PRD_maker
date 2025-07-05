@@ -170,16 +170,15 @@ export default function Home() {
         ))}
       </div>
 
-      {isAllAnswered && (
-        <div className="mt-8 text-center">
-          <button
-            onClick={handleGeneratePrompt}
-            className="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            프롬프트 생성
-          </button>
-        </div>
-      )}
+      <div className="mt-8 text-center">
+        <button
+          onClick={handleGeneratePrompt}
+          disabled={!isAllAnswered}
+          className="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed"
+        >
+          프롬프트 생성
+        </button>
+      </div>
 
       {prompt && (
         <div className="mt-8 p-6 bg-gray-100 rounded-md">

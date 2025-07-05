@@ -116,13 +116,22 @@ export default function Home() {
   const isAllAnswered = answers.every(answer => answer.trim() !== '');
 
   const handleGeneratePrompt = () => {
+    const isUserInputEmpty = answers.every(answer => answer.trim() === '');
+    const sourceAnswers = isUserInputEmpty ? exampleAnswers : answers;
+
+    if (isUserInputEmpty) {
+      setAnswers(exampleAnswers);
+    }
+
     const qaSection = questions
       .map((q, i) => {
-        return `${q}\n답변: ${answers[i]}`;
+        return `${q}
+답변: ${sourceAnswers[i]}`;
       })
       .join('\n\n---\n\n');
 
-    const generatedPrompt = `\n당신은 20년차 시니어 개발자이자 뛰어난 프로덕트 매니저(PM)입니다.\n당신의 임무는 사용자의 아이디어를 기반으로, 즉시 개발에 착수할 수 있는 매우 구체적이고 전문적인 프로젝트 문서를 작성하는 것입니다.\n\n아래 사용자의 답변을 바탕으로, 다음 두 가지 문서를 생성해주세요.\n\n1.  **README.md (제품 요구사항 문서, PRD):**\n    *   이 문서가 그 자체로 완결된 PRD가 되어야 합니다.\n    *   포함할 내용: 프로젝트 개요, 해결하려는 문제, 목표, 사용자 요구사항(주요 기능, 사용자 스토리 포함), 기술 스택 등 전문적인 내용을 모두 포함해주세요.\n    *   누가 읽어도 명확하게 이해할 수 있도록 논리적이고 체계적으로 작성해주세요.\n\n2.  **CONTEXT.md (단계별 실행 계획):**\n    *   이 프로젝트를 처음부터 완성까지 개발하기 위한, 구체적이고 단계적인 실행 계획(Step-by-step plan)을 작성해주세요.\n    *   각 단계는 CLI 기반 AI 개발툴이 이해하고 바로 실행할 수 있을 정도로 명확하고 상세해야 합니다. (예: \"[환경설정] create-next-app을 사용하여...\")\n    *   개발 단계를 현실적으로 구분하고(예: Phase 1, 2, 3), 각 단계별로 수행할 작업을 구체적으로 명시해주세요.\n\n---\n[사용자 답변]\n\n${qaSection}\n---\n\n위 내용을 바탕으로, \"readme\"와 \"context\"를 key로 하는 JSON 객체 형식으로 최종 결과물을 출력해주세요. 모든 문서는 반드시 한국어로 작성되어야 합니다.\n`;
+    const generatedPrompt = `\n당신은 20년차 시니어 개발자이자 뛰어난 프로덕트 매니저(PM)입니다.\n당신의 임무는 사용자의 아이디어를 기반으로, 즉시 개발에 착수할 수 있는 매우 구체적이고 전문적인 프로젝트 문서를 작성하는 것입니다.\n\n아래 사용자의 답변을 바탕으로, 다음 두 가지 문서를 생성해주세요.\n\n1.  **README.md (제품 요구사항 문서, PRD):**\n    *   이 문서가 그 자체로 완결된 PRD가 되어야 합니다.\n    *   포함할 내용: 프로젝트 개요, 해결하려는 문제, 목표, 사용자 요구사항(주요 기능, 사용자 스토리 포함), 기술 스택 등 전문적인 내용을 모두 포함해주세요.\n    *   누가 읽어도 명확하게 이해할 수 있도록 논리적이고 체계적으로 작성해주세요.\n\n2.  **CONTEXT.md (단계별 실행 계획):**\n    *   이 프로젝트를 처음부터 완성까지 개발하기 위한, 구체적이고 단계적인 실행 계획(Step-by-step plan)을 작성해주세요.\n    *   각 단계는 CLI 기반 AI 개발툴이 이해하고 바로 실행할 수 있을 정도로 명확하고 상세해야 합니다. (예: \"[환경설정] create-next-app을 사용하여...\")\n    *   개발 단계를 현실적으로 구분하고(예: Phase 1, 2, 3), 각 단계별로 수행할 작업을 구체적으로 명시해주세요.\n
+---\n[사용자 답변]\n\n${qaSection}\n---\n\n위 내용을 바탕으로, \"readme\"와 \"context\"를 key로 하는 JSON 객체 형식으로 최종 결과물을 출력해주세요. 모든 문서는 반드시 한국어로 작성되어야 합니다.\n`;
     setPrompt(generatedPrompt);
     setShowExamples(true); // Show examples when prompt is generated
     setReadme(exampleReadme);
@@ -173,8 +182,7 @@ export default function Home() {
       <div className="mt-8 text-center">
         <button
           onClick={handleGeneratePrompt}
-          disabled={!isAllAnswered}
-          className="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed"
+          className="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           프롬프트 생성
         </button>
